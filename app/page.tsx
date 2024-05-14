@@ -12,7 +12,7 @@ import { DropdownMenuTrigger } from "@/components/dropdown-trigger";
 import { clsx } from "clsx";
 
 const DropdownMenuDemo = () => {
-  const ref = useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const [virtualRef, setVirtualRef] = useState<null | RefObject<{
     getBoundingClientRect: () => DOMRect;
   }>>(null);
@@ -47,18 +47,20 @@ const DropdownMenuDemo = () => {
                     <>
                       <DropdownMenuTrigger
                         onClick={() => {
+                          setVirtualRef(null);
                           setPopoverOrigin("dropdown");
                         }}
-                        ref={ref}
+                        ref={buttonRef}
                       />
                     </>
                   ) : (
                     <Popover.PopoverAnchor asChild>
                       <DropdownMenuTrigger
                         onClick={() => {
+                          setVirtualRef(null);
                           setPopoverOrigin("dropdown");
                         }}
-                        ref={ref}
+                        ref={buttonRef}
                       />
                     </Popover.PopoverAnchor>
                   )}
@@ -74,10 +76,13 @@ const DropdownMenuDemo = () => {
                 sideOffset={popoverOrigin === "dropdown" ? 5 : 0}
                 align={popoverOrigin === "dropdown" ? "center" : "start"}
                 className={clsx("p-5 w-52 bg-white border-2 border-black")}
-                onEscapeKeyDown={() => ref.current?.focus()}
-                onPointerDownOutside={() => setVirtualRef(null)}
+                onCloseAutoFocus={(e) => {
+                  e.preventDefault();
+                  setVirtualRef(null);
+                  buttonRef.current?.focus();
+                }}
               >
-                <PopoverClose onClick={() => setVirtualRef(null)} />
+                <PopoverClose />
               </PopoverContent>
             </DropdownMenu.Root>
           </ContextMenu.Root>
