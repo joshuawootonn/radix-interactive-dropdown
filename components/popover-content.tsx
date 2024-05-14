@@ -1,10 +1,11 @@
 import * as Popover from "@radix-ui/react-popover";
+import { ComponentProps } from "react";
 
-function Label(props) {
+function Label(props: ComponentProps<"label">) {
   return <label className="text-[13px] text-black w-20" {...props} />;
 }
 
-function Input(props) {
+function Input(props: ComponentProps<"input">) {
   return (
     <input
       className="inline-flex items-center w-20 justify-center flex-1 px-2.5 py-1 text-[13px] leading-none text-black border-2 border-black outline-none focus:rounded-0"
@@ -13,9 +14,9 @@ function Input(props) {
   );
 }
 
-export function PopoverContent() {
+export function PopoverContent(props: Popover.PopoverContentProps) {
   return (
-    <>
+    <Popover.Content {...props} asChild>
       <div className="flex flex-col gap-2.5">
         <p className=" text-[15px] leading-[19px] font-medium mb-2.5">
           Dimensions
@@ -36,8 +37,8 @@ export function PopoverContent() {
           <Label htmlFor="maxHeight">Max. height</Label>
           <Input id="maxHeight" defaultValue="none" />
         </fieldset>
+        {props.children}
       </div>
-      <Popover.Arrow className="fill-white" />
-    </>
+    </Popover.Content>
   );
 }
