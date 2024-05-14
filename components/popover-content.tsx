@@ -16,29 +16,31 @@ function Input(props: ComponentProps<"input">) {
 
 export function PopoverContent(props: Popover.PopoverContentProps) {
   return (
-    <Popover.Content {...props} asChild>
-      <div className="flex flex-col gap-2.5">
-        <p className=" text-[15px] leading-[19px] font-medium mb-2.5">
-          Dimensions
-        </p>
-        <fieldset className="flex gap-2 items-center">
-          <Label htmlFor="width">Width</Label>
-          <Input id="width" defaultValue="100%" />
-        </fieldset>
-        <fieldset className="flex gap-2 items-center">
-          <Label htmlFor="maxWidth">Max. width</Label>
-          <Input id="maxWidth" defaultValue="300px" />
-        </fieldset>
-        <fieldset className="flex gap-2 items-center">
-          <Label htmlFor="height">Height</Label>
-          <Input id="height" defaultValue="25px" />
-        </fieldset>
-        <fieldset className="flex gap-2 items-center">
-          <Label htmlFor="maxHeight">Max. height</Label>
-          <Input id="maxHeight" defaultValue="none" />
-        </fieldset>
-        {props.children}
-      </div>
-    </Popover.Content>
+    <Popover.PopoverPortal>
+      <Popover.Content {...props} asChild>
+        <div className="flex flex-col gap-2.5">
+          <p className=" text-[15px] leading-[19px] font-medium mb-2.5">
+            Dimensions
+          </p>
+          <fieldset className="flex gap-2 items-center">
+            <Label htmlFor="width">Width</Label>
+            <Input id="width" defaultValue="100%" />
+          </fieldset>
+          <fieldset className="flex gap-2 items-center">
+            <Label htmlFor="maxWidth">Max. width</Label>
+            <Input id="maxWidth" defaultValue="300px" />
+          </fieldset>
+          <fieldset className="flex gap-2 items-center">
+            <Label htmlFor="height">Height</Label>
+            <Input id="height" defaultValue="25px" />
+          </fieldset>
+          <fieldset className="flex gap-2 items-center">
+            <Label htmlFor="maxHeight">Max. height</Label>
+            <Input id="maxHeight" defaultValue="none" />
+          </fieldset>
+          {props.children}
+        </div>
+      </Popover.Content>
+    </Popover.PopoverPortal>
   );
 }

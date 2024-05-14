@@ -23,7 +23,9 @@ const DropdownMenuDemo = () => {
   return (
     <>
       <div className="flex items-center justify-center h-screen gap-4">
-        <button className="border-2 border-black px-3 py-1">before</button>
+        <button className="relative svg-outline border-2 border-black px-3 py-1">
+          before
+        </button>
         <Popover.Root>
           {virtualRef && <Popover.PopoverAnchor virtualRef={virtualRef} />}
           <ContextMenu.Root modal={false}>
@@ -62,35 +64,27 @@ const DropdownMenuDemo = () => {
                   )}
                 </div>
               </ContextMenu.Trigger>
-              <DropdownMenu.Portal>
-                <DropdownMenu.Content
-                  sideOffset={5}
-                  className="bg-white border-2 border-black"
-                >
-                  <DropdownContent />
-                </DropdownMenu.Content>
-              </DropdownMenu.Portal>
-              <ContextMenu.Portal>
-                <ContextMenu.Content className="bg-white border-2 border-black">
-                  <ContextContent />
-                </ContextMenu.Content>
-              </ContextMenu.Portal>
-              <Popover.Portal>
-                <PopoverContent
-                  avoidCollisions={false}
-                  sideOffset={popoverOrigin === "dropdown" ? 5 : 0}
-                  align={popoverOrigin === "dropdown" ? "center" : "start"}
-                  className={clsx("p-5 w-52 bg-white border-2 border-black")}
-                  onEscapeKeyDown={() => ref.current?.focus()}
-                  onPointerDownOutside={() => setVirtualRef(null)}
-                >
-                  <PopoverClose onClick={() => setVirtualRef(null)} />
-                </PopoverContent>
-              </Popover.Portal>
+              <DropdownContent
+                sideOffset={5}
+                className="bg-white border-2 border-black"
+              />
+              <ContextContent className="bg-white border-2 border-black" />
+              <PopoverContent
+                avoidCollisions={false}
+                sideOffset={popoverOrigin === "dropdown" ? 5 : 0}
+                align={popoverOrigin === "dropdown" ? "center" : "start"}
+                className={clsx("p-5 w-52 bg-white border-2 border-black")}
+                onEscapeKeyDown={() => ref.current?.focus()}
+                onPointerDownOutside={() => setVirtualRef(null)}
+              >
+                <PopoverClose onClick={() => setVirtualRef(null)} />
+              </PopoverContent>
             </DropdownMenu.Root>
           </ContextMenu.Root>
         </Popover.Root>
-        <button className="border-2 border-black px-3 py-1">after</button>
+        <button className="relative svg-outline border-2 border-black px-3 py-1">
+          after
+        </button>
       </div>
     </>
   );

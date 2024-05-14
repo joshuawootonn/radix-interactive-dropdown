@@ -11,7 +11,7 @@ export const DropdownMenuTrigger = forwardRef(function DropdownMenuTrigger(
   return (
     <Trigger asChild {...props}>
       <button
-        className="w-[35px] h-[35px] translate-x-0.5 -translate-y-0.5 border-2 border-black inline-flex items-center justify-center text-black bg-white"
+        className="relative svg-outline w-[35px] h-[35px] translate-x-0.5 -translate-y-0.5 border-2 border-black inline-flex items-center justify-center text-black bg-white"
         aria-label="Customise options"
         data-anchor
         ref={ref}
