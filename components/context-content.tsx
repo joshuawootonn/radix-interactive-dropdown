@@ -17,8 +17,8 @@ export function ContextContent(props: ContextMenu.ContextMenuContentProps) {
         <Popover.Trigger asChild>
           <Item>Open Popover</Item>
         </Popover.Trigger>
-        <Item>New Tab </Item>
-        <Item>New Private Window </Item>
+        <Item>Apple</Item>
+        <Item>Banana</Item>
       </ContextMenu.Content>
     </ContextMenu.ContextMenuPortal>
   );

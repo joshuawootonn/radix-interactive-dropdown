@@ -11,7 +11,7 @@ import { PopoverClose } from "@/components/popover-close";
 import { DropdownMenuTrigger } from "@/components/dropdown-trigger";
 import { clsx } from "clsx";
 
-const DropdownMenuDemo = () => {
+const App = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [virtualRef, setVirtualRef] = useState<null | RefObject<{
     getBoundingClientRect: () => DOMRect;
@@ -95,4 +95,4 @@ const DropdownMenuDemo = () => {
   );
 };
 
-export default DropdownMenuDemo;
+export default App;

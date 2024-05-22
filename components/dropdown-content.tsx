@@ -12,14 +12,14 @@ function Item(props: DropdownMenu.DropdownMenuItemProps) {
 
 export function DropdownContent(props: DropdownMenu.DropdownMenuContentProps) {
   return (
-    <DropdownMenu.DropdownMenuPortal>
+    <DropdownMenu.Portal>
       <DropdownMenu.Content {...props}>
         <Popover.Trigger asChild>
           <Item>Open Popover</Item>
         </Popover.Trigger>
-        <Item>New Tab </Item>
-        <Item>New Private Window </Item>
+        <Item>Apple</Item>
+        <Item>Banana</Item>
       </DropdownMenu.Content>
-    </DropdownMenu.DropdownMenuPortal>
+    </DropdownMenu.Portal>
   );
 }
