@@ -165,61 +165,66 @@ export const App = () => {
   const [virtualRef, setVirtualRef] = useState<null | RefObject<{
     getBoundingClientRect: () => DOMRect;
   }>>(null);
-  const [popoverOrigin, setPopoverOrigin] = useState<"dropdown" | "context">(
-    "dropdown",
-  );
 
   return (
     <div className="flex items-center justify-center gap-4">
       <Popover.Root>
-        {/* {virtualRef && <Popover.PopoverAnchor virtualRef={virtualRef} />} */}
         <ContextMenu.Root modal={false}>
-          <DropdownMenu.Root modal={false}>
-            <ContextMenu.Trigger
-              asChild
-              onContextMenu={(e) => {
-                setVirtualRef({
-                  current: {
-                    getBoundingClientRect: () =>
-                      new DOMRect(e.clientX + 2, e.clientY, 0, 0),
-                  },
-                });
-                setPopoverOrigin("context");
-              }}
-            >
-              <div className="w-52 h-52 border-2 border-black flex justify-end items-start">
-                <Popover.PopoverAnchor
-                  virtualRef={virtualRef || undefined}
-                  asChild
-                >
-                  <DropdownMenuTrigger
-                    onClick={() => {
-                      setVirtualRef(null);
-                      setPopoverOrigin("dropdown");
+          <ContextMenu.Trigger
+            asChild
+            onContextMenu={(e) => {
+              setVirtualRef({
+                current: {
+                  getBoundingClientRect: () =>
+                    new DOMRect(e.clientX + 2, e.clientY, 0, 0),
+                },
+              });
+            }}
+          >
+            <div className="w-52 h-52 border-2 border-black flex justify-end items-start">
+              <DropdownMenu.Root modal={false}>
+                <Popover.Root>
+                  <Popover.PopoverAnchor
+                    virtualRef={virtualRef || undefined}
+                    asChild
+                  >
+                    <DropdownMenuTrigger
+                      onClick={() => setVirtualRef(null)}
+                      ref={buttonRef}
+                    />
+                  </Popover.PopoverAnchor>
+                  <PopoverContent
+                    sideOffset={5}
+                    align={"center"}
+                    className={clsx("p-5 w-52 bg-white border-2 border-black")}
+                    onCloseAutoFocus={(e) => {
+                      e.preventDefault();
+                      buttonRef.current?.focus();
                     }}
-                    ref={buttonRef}
-                  />
-                </Popover.PopoverAnchor>
-              </div>
-            </ContextMenu.Trigger>
-            <DropdownContent
-              sideOffset={5}
-              className="bg-white border-2 border-black"
-            />
-            <ContextContent className="bg-white border-2 border-black" />
-            <PopoverContent
-              sideOffset={popoverOrigin === "dropdown" ? 5 : 0}
-              align={popoverOrigin === "dropdown" ? "center" : "start"}
-              className={clsx("p-5 w-52 bg-white border-2 border-black")}
-              onCloseAutoFocus={(e) => {
-                e.preventDefault();
-                setVirtualRef(null);
-                buttonRef.current?.focus();
-              }}
-            >
-              <PopoverClose />
-            </PopoverContent>
-          </DropdownMenu.Root>
+                  >
+                    <PopoverClose />
+                  </PopoverContent>
+                </Popover.Root>
+              </DropdownMenu.Root>
+            </div>
+          </ContextMenu.Trigger>
+          <DropdownContent
+            sideOffset={5}
+            className="bg-white border-2 border-black"
+          />
+          <ContextContent className="bg-white border-2 border-black" />
+          <PopoverContent
+            sideOffset={0}
+            align={"start"}
+            className={clsx("p-5 w-52 bg-white border-2 border-black")}
+            onCloseAutoFocus={(e) => {
+              e.preventDefault();
+              setVirtualRef(null);
+              buttonRef.current?.focus();
+            }}
+          >
+            <PopoverClose />
+          </PopoverContent>
         </ContextMenu.Root>
       </Popover.Root>
     </div>
