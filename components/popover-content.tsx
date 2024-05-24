@@ -1,5 +1,6 @@
 import * as Popover from "@radix-ui/react-popover";
 import { ComponentProps } from "react";
+import { PopoverClose } from "./popover-close";
 
 function Label(props: ComponentProps<"label">) {
   return <label className="text-[13px] text-black w-20" {...props} />;
@@ -38,7 +39,7 @@ export function PopoverContent(props: Popover.PopoverContentProps) {
             <Label htmlFor="maxHeight">Max. height</Label>
             <Input id="maxHeight" defaultValue="none" />
           </fieldset>
-          {props.children}
+          <PopoverClose />
         </div>
       </Popover.Content>
     </Popover.PopoverPortal>
