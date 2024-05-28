@@ -7,7 +7,6 @@ import { DropdownContent } from "../components/dropdown-content";
 import { PopoverContent } from "../components/popover-content";
 import { useRef, useState, RefObject } from "react";
 import { ContextContent } from "../components/context-content";
-import { PopoverClose } from "@/components/popover-close";
 import { DropdownMenuTrigger } from "@/components/dropdown-trigger";
 import { clsx } from "clsx";
 
@@ -40,10 +39,7 @@ const DropdownMenuDemo = () => {
                 <DropdownMenu.Root modal={false}>
                   <div className="w-52 h-52 border-2 border-black flex justify-end items-start">
                     <Popover.PopoverAnchor>
-                      <DropdownMenuTrigger
-                        onClick={() => setVirtualRef(null)}
-                        ref={buttonRef}
-                      />
+                      <DropdownMenuTrigger ref={buttonRef} />
                     </Popover.PopoverAnchor>
                     <PopoverContent
                       sideOffset={5}
