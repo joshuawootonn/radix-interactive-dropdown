@@ -21,23 +21,23 @@ export function PopoverContent(props: Popover.PopoverContentProps) {
       <Popover.Content {...props} asChild>
         <div className="flex flex-col gap-2.5">
           <p className=" text-[15px] leading-[19px] font-medium mb-2.5">
-            Dimensions
+            Custom
           </p>
           <fieldset className="flex gap-2 items-center">
-            <Label htmlFor="width">Width</Label>
-            <Input id="width" defaultValue="100%" />
+            <Label htmlFor="name">Name</Label>
+            <Input id="name" defaultValue="Name" />
           </fieldset>
           <fieldset className="flex gap-2 items-center">
-            <Label htmlFor="maxWidth">Max. width</Label>
-            <Input id="maxWidth" defaultValue="300px" />
+            <Label htmlFor="width">Width</Label>
+            <Input id="width" defaultValue="3in" />
           </fieldset>
           <fieldset className="flex gap-2 items-center">
             <Label htmlFor="height">Height</Label>
-            <Input id="height" defaultValue="25px" />
+            <Input id="height" defaultValue="7in" />
           </fieldset>
           <fieldset className="flex gap-2 items-center">
-            <Label htmlFor="maxHeight">Max. height</Label>
-            <Input id="maxHeight" defaultValue="none" />
+            <Label htmlFor="color">Color</Label>
+            <Input id="color" defaultValue="Purple" />
           </fieldset>
           <PopoverClose />
         </div>

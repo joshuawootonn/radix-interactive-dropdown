@@ -54,7 +54,7 @@ const DropdownMenuDemo = () => {
                     />
                     <DropdownContent
                       sideOffset={5}
-                      className="bg-white border-2 border-black"
+                      className="bg-white border-2 border-black w-28"
                     />
                   </div>
                 </DropdownMenu.Root>
