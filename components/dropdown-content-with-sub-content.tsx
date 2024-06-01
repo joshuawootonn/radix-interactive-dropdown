@@ -1,19 +1,21 @@
-import * as ContextMenu from "@radix-ui/react-context-menu";
-import * as Popover from "@radix-ui/react-popover";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { SubDropdownMenuContent } from "./subdropdown-content";
 
-function Item(props: ContextMenu.ContextMenuItemProps) {
+function Item(props: DropdownMenu.DropdownMenuItemProps) {
   return (
-    <ContextMenu.Item
+    <DropdownMenu.Item
       className="group text-[13px] leading-none text-black flex items-center px-3 py-2 relative select-none outline-none hover:text-white hover:bg-black focus:text-white focus:bg-black"
       {...props}
     />
   );
 }
 
-export function ContextContent(props: ContextMenu.ContextMenuContentProps) {
+export function DropdownContentInteractiveSubContent(
+  props: DropdownMenu.DropdownMenuContentProps,
+) {
   return (
-    <ContextMenu.ContextMenuPortal>
-      <ContextMenu.Content {...props}>
+    <DropdownMenu.Portal>
+      <DropdownMenu.Content {...props}>
         <Item>
           Circle
           <svg
@@ -44,17 +46,14 @@ export function ContextContent(props: ContextMenu.ContextMenuContentProps) {
             <path d="m2 2h20v20h-20v-20" />
           </svg>
         </Item>
-        <Popover.Trigger asChild>
-          <Item>Custom</Item>
-        </Popover.Trigger>
-        {/* <DropdownMenu.Sub> */}
-        {/*   <DropdownMenu.DropdownMenuSubTrigger className="group text-[13px] leading-none text-black flex items-center px-3 py-2 relative select-none outline-none hover:text-white hover:bg-black focus:text-white focus:bg-black"> */}
-        {/*     Custom */}
-        {/*   </DropdownMenu.DropdownMenuSubTrigger> */}
-        {/**/}
-        {/*   <SubDropdownMenuContent /> */}
-        {/* </DropdownMenu.Sub> */}
-      </ContextMenu.Content>
-    </ContextMenu.ContextMenuPortal>
+        <DropdownMenu.Sub>
+          <DropdownMenu.DropdownMenuSubTrigger className="group text-[13px] leading-none text-black flex items-center px-3 py-2 relative select-none outline-none hover:text-white hover:bg-black focus:text-white focus:bg-black">
+            Custom
+          </DropdownMenu.DropdownMenuSubTrigger>
+
+          <SubDropdownMenuContent />
+        </DropdownMenu.Sub>
+      </DropdownMenu.Content>
+    </DropdownMenu.Portal>
   );
 }
