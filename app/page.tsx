@@ -54,8 +54,18 @@ const DropdownMenuDemo = () => {
                       )}
                       onCloseAutoFocus={(e) => {
                         e.preventDefault();
-                        buttonRef.current?.focus();
+
+                        const isContextMenuFocused =
+                          document.activeElement &&
+                          document.activeElement instanceof HTMLElement &&
+                          document.activeElement.dataset.radixMenuContent ===
+                            "";
+
+                        if (!isContextMenuFocused) {
+                          buttonRef.current?.focus();
+                        }
                       }}
+                      onContextMenu={(e) => e.stopPropagation()}
                     />
                     <DropdownContent
                       sideOffset={5}
