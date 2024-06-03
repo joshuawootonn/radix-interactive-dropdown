@@ -11,7 +11,7 @@ import { DropdownMenuTrigger } from "@/components/dropdown-trigger";
 import { clsx } from "clsx";
 import { DropdownContent } from "@/components/dropdown-content";
 
-const DropdownMenuDemo = () => {
+const App = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [virtualRef, setVirtualRef] = useState<null | RefObject<{
     getBoundingClientRect: () => DOMRect;
@@ -55,13 +55,13 @@ const DropdownMenuDemo = () => {
                       onCloseAutoFocus={(e) => {
                         e.preventDefault();
 
-                        const isContextMenuFocused =
+                        const isMenuFocused =
                           document.activeElement &&
                           document.activeElement instanceof HTMLElement &&
                           document.activeElement.dataset.radixMenuContent ===
                             "";
 
-                        if (!isContextMenuFocused) {
+                        if (!isMenuFocused) {
                           buttonRef.current?.focus();
                         }
                       }}
@@ -141,4 +141,4 @@ const DropdownMenuDemo = () => {
   );
 };
 
-export default DropdownMenuDemo;
+export default App;
