@@ -5,7 +5,7 @@ import * as ContextMenu from "@radix-ui/react-context-menu";
 import * as Popover from "@radix-ui/react-popover";
 import { DropdownContentInteractiveSubContent } from "../components/dropdown-content-with-sub-content";
 import { PopoverContent } from "../components/popover-content";
-import { useRef, useState, RefObject } from "react";
+import { useRef, useState } from "react";
 import { ContextContent } from "../components/context-content";
 import { DropdownMenuTrigger } from "@/components/dropdown-trigger";
 import { clsx } from "clsx";
@@ -13,9 +13,7 @@ import { DropdownContent } from "@/components/dropdown-content";
 
 const App = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const [virtualRef, setVirtualRef] = useState<null | RefObject<{
-    getBoundingClientRect: () => DOMRect;
-  }>>(null);
+  const [position, setPosition] = useState<DOMRect | null>(null);
 
   return (
     <>
@@ -28,16 +26,19 @@ const App = () => {
           a dropdown menu.
         </p>
         <Popover.Root>
-          {virtualRef && <Popover.PopoverAnchor virtualRef={virtualRef} />}
+          {position && (
+            <Popover.PopoverAnchor
+              virtualRef={{
+                current: {
+                  getBoundingClientRect: () => position,
+                },
+              }}
+            />
+          )}
           <ContextMenu.Root modal={false}>
             <ContextMenu.Trigger
               onContextMenu={(e) => {
-                setVirtualRef({
-                  current: {
-                    getBoundingClientRect: () =>
-                      new DOMRect(e.clientX + 2, e.clientY, 0, 0),
-                  },
-                });
+                setPosition(new DOMRect(e.clientX + 2, e.clientY, 0, 0));
               }}
             >
               <Popover.Root>
@@ -85,17 +86,20 @@ const App = () => {
         </Popover.Root>
         <p>And not trying to make a sub dropdown menu interactive</p>
         <Popover.Root>
-          {virtualRef && <Popover.PopoverAnchor virtualRef={virtualRef} />}
+          {position && (
+            <Popover.PopoverAnchor
+              virtualRef={{
+                current: {
+                  getBoundingClientRect: () => position,
+                },
+              }}
+            />
+          )}
           <ContextMenu.Root modal={false}>
             <ContextMenu.Trigger
-              onContextMenu={(e) => {
-                setVirtualRef({
-                  current: {
-                    getBoundingClientRect: () =>
-                      new DOMRect(e.clientX + 2, e.clientY, 0, 0),
-                  },
-                });
-              }}
+              onContextMenu={(e) =>
+                setPosition(new DOMRect(e.clientX + 2, e.clientY, 0, 0))
+              }
             >
               <Popover.Root>
                 <DropdownMenu.Root modal={false}>
