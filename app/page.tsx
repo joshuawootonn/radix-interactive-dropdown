@@ -19,11 +19,11 @@ const App = () => {
     <>
       <div className="prose mx-auto my-3">
         <h1>
-          Recreated Linear&apos;s interactive dropdowns with Radix UI (Demo)
+          Recreating Linear&apos;s interactive dropdowns with Radix UI (Demo)
         </h1>
         <p>
-          The best solution to interactive dropdown menu is opening dialog from
-          a dropdown menu.
+          Here is a demo of a menu and dialog composed together for a
+          &quot;interactive menu&quot; experience.
         </p>
         <Popover.Root>
           {position && (
@@ -84,7 +84,10 @@ const App = () => {
             />
           </ContextMenu.Root>
         </Popover.Root>
-        <p>And not trying to make a sub dropdown menu interactive</p>
+        <p>
+          Interactive sub dropdown menus don&apos;t work in this case because
+          their shortcuts conflict with text selection.
+        </p>
         <Popover.Root>
           {position && (
             <Popover.PopoverAnchor
